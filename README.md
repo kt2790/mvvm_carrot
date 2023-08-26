@@ -1,3 +1,6 @@
 # mvvm_carrot
-Carrot Market Clone Coding Using MVVM Architecture <br>
-ViewModel + LiveData + Flow + Room
+## Carrot Market Clone Coding Using MVVM Architecture <br>
+- ViewModel
+- LiveData
+- Flow
+- Room
