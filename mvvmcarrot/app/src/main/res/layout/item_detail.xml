@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/image_radius"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/detail_item_title"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="30dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detail_item_address"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="TextView"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_item_title" />
+
+    <TextView
+        android:id="@+id/detail_item_price"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_item_address" />
+
+    <TextView
+        android:id="@+id/detail_item_like"
+        android:layout_width="18dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="27dp"
+        android:text="42"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/detail_item_bookmark"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        app:layout_constraintEnd_toStartOf="@id/detail_item_like"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="-7dp"
+        app:srcCompat="@drawable/ic_favorite_border_foreground" />
+
+    <TextView
+        android:id="@+id/detail_item_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120sp"
+        android:text="42"
+        app:layout_constraintEnd_toStartOf="@id/detail_item_bookmark"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/detail_item_chat"
+        app:layout_constraintTop_toTopOf="@+id/detail_item_chat"
+        app:srcCompat="@android:drawable/sym_action_chat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
