@@ -1,28 +1,20 @@
 package com.example.mvvmcarrot.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.mvvmcarrot.data.ItemDatabase
 import com.example.mvvmcarrot.model.Item
 import com.example.mvvmcarrot.repository.ItemRepository
+import com.example.mvvmcarrot.repository.ItemRepositoryImpl
 import kotlinx.coroutines.launch
 
 
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(private val repository : ItemRepository) : ViewModel() {
 
-    val readAllData : LiveData<List<Item>>
-    private val repository: ItemRepository
-
-    init {
-        val itemDao = ItemDatabase.getDatabase(application)!!.itemDao()
-        repository = ItemRepository(itemDao)
-        readAllData = repository.readAllItem.asLiveData()
-
-    }
+    val readAllData : LiveData<List<Item>> = repository.readAllItem().asLiveData()
 
     fun addItem(item : Item) {
         viewModelScope.launch {

@@ -1,27 +1,18 @@
 package com.example.mvvmcarrot.repository
 
-import com.example.mvvmcarrot.data.ItemDao
 import com.example.mvvmcarrot.model.Item
 import kotlinx.coroutines.flow.Flow
 
+interface ItemRepository {
+    suspend fun addItem(item: Item)
 
+    suspend fun updateItem(item: Item)
 
-class ItemRepository (private val itemDao: ItemDao) {
-    val readAllItem : Flow<List<Item>> = itemDao.readAllItem()
+    suspend fun deleteItem(item: Item)
 
-    suspend fun addItem(item: Item) {
-        itemDao.addItem(item)
-    }
+    suspend fun updateBookmark(item : Item)
 
-    suspend fun updateItem(item: Item) {
-        itemDao.updateItem(item)
-    }
+    fun readAllItem() : Flow<List<Item>>
 
-    suspend fun deleteItem(item: Item) {
-        itemDao.deleteItem(item)
-    }
-
-    fun readItem(id: Int) : Flow<Item> {
-        return itemDao.readItem(id)
-    }
+    fun readItem(id: Int) : Flow<Item>
 }

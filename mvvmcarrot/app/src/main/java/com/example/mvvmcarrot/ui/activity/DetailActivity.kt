@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import com.example.mvvmcarrot.R
 import com.example.mvvmcarrot.databinding.ActivityDetailBinding
 import com.example.mvvmcarrot.model.Item
@@ -15,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailBinding
     private lateinit var curItem : Item
-    private val detailViewModel : DetailViewModel by viewModels { DetailViewModelFactory(application, id) }
+    private val detailViewModel : DetailViewModel by viewModels { DetailViewModelFactory() }
     var id = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initializeView() {
-        detailViewModel.readItem.observe(this, Observer {
+        detailViewModel.readItem(id).asLiveData().observe(this, Observer {
             curItem = it
             binding.detailPageTitle.text = it.title
             binding.detailPageAddress.text = it.address

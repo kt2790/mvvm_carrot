@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.mvvmcarrot.model.Item
+import com.example.mvvmcarrot.util.MyApplication
 
-@Database(entities = [Item::class], version = 7, exportSchema = false)
+@Database(entities = [Item::class], version = 8, exportSchema = false)
 abstract class ItemDatabase : RoomDatabase() {
 
     abstract fun itemDao() : ItemDao
@@ -16,10 +17,10 @@ abstract class ItemDatabase : RoomDatabase() {
         @Volatile
         private var instance : ItemDatabase? = null
 
-        fun getDatabase(context : Context) : ItemDatabase {
+        fun getDatabase() : ItemDatabase {
             return instance ?: synchronized(ItemDatabase::class) {
                 instance ?: Room.databaseBuilder(
-                    context.applicationContext,
+                    MyApplication.instance,
                     ItemDatabase::class.java,
                     "item_database"
                 ).build().also {

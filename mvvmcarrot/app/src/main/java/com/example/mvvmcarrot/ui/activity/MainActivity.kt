@@ -15,6 +15,7 @@ import com.example.mvvmcarrot.databinding.ActivityMainBinding
 import com.example.mvvmcarrot.listener.ItemDeleteListener
 import com.example.mvvmcarrot.model.Item
 import com.example.mvvmcarrot.viewmodel.MainViewModel
+import com.example.mvvmcarrot.viewmodel.MainViewModelFactory
 
 
 var initial = 0
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), ItemDeleteListener {
     private lateinit var binding : ActivityMainBinding
     private var scrollState = 0
 
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels { MainViewModelFactory() }
     private val adapter : ItemAdapter by lazy { ItemAdapter(this, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
