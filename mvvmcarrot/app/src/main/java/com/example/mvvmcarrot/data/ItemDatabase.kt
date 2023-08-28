@@ -17,10 +17,10 @@ abstract class ItemDatabase : RoomDatabase() {
         @Volatile
         private var instance : ItemDatabase? = null
 
-        fun getDatabase() : ItemDatabase {
+        fun getDatabase(context: Context) : ItemDatabase {
             return instance ?: synchronized(ItemDatabase::class) {
                 instance ?: Room.databaseBuilder(
-                    MyApplication.instance,
+                    context,
                     ItemDatabase::class.java,
                     "item_database"
                 ).build().also {

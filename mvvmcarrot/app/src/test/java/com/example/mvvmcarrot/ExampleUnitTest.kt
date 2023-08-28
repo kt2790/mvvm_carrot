@@ -9,9 +9,14 @@ import com.example.mvvmcarrot.model.Item
 import com.example.mvvmcarrot.repository.ItemRepository
 import com.example.mvvmcarrot.repository.ItemRepositoryImpl
 import com.example.mvvmcarrot.viewmodel.DetailViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
@@ -146,7 +151,17 @@ class ExampleUnitTest {
         val viewModel = DetailViewModel(repository)
 
         val item : Flow<Item> = viewModel.readItem(5)
+        /*
+        CoroutineScope(Dispatchers.IO).launch {
+            item.collect {
+                println("likeCnt : ${it.likeCnt}")
+            }
+        }
 
+        22
+        23
+
+        */
         val beforeItem : Item = item.firstOrNull()!!
         val beforeCnt : Int = beforeItem.likeCnt
 
@@ -154,6 +169,12 @@ class ExampleUnitTest {
 
         val afterItem : Item = item.firstOrNull()!!
         val afterCnt : Int = afterItem.likeCnt
+
+        CoroutineScope(Dispatchers.IO).launch {
+            item.collect {
+                println("likeCnt : ${it.likeCnt}")
+            }
+        }
 
         assertEquals(beforeCnt + 1, afterCnt)
 

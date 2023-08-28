@@ -1,6 +1,8 @@
 package com.example.mvvmcarrot.util
 
 import android.app.Application
+import com.example.mvvmcarrot.data.ItemDatabase
+import com.example.mvvmcarrot.repository.ItemRepositoryImpl
 
 class MyApplication : Application() {
 
@@ -10,5 +12,7 @@ class MyApplication : Application() {
 
     companion object {
         lateinit var instance: Application
+        private val database by lazy { ItemDatabase.getDatabase(instance) }
+        val repository by lazy { ItemRepositoryImpl.getRepository(database.itemDao())}
     }
 }
