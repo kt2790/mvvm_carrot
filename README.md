@@ -9,7 +9,7 @@
 # ⭐️ Key Function
 
 - 사용자가 등록해둔 물품을 RecyclerView 를 통해 보여줌
-- LiveData, Flow 를 활용해 사용자가 물품을 삭제했을 때, DB 변경을 Flow를 통해 실시간으로 감지, ViewModel 에선 Flow를 LiveData로 변환하여, View 단에서 LiveData를 Observing 하는 방식으로 반응형 UI 제공
+- LiveData, Flow 를 활용해 사용자가 물품을 삭제했을 때, DB 변경을 Flow를 통해 실시간으로 감지, ViewModel 에선 Flow 를 LiveData 로 변환하여 가지고 있고, View 단에서는 ViewModel 의 LiveData 를 Observing 하는 방식으로 반응형 UI 제공
 
 # 🛠 Tech Stack
 
