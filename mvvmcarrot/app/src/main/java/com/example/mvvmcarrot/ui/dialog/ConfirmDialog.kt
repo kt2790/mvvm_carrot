@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.mvvmcarrot.R
 import com.example.mvvmcarrot.databinding.FragmentConfirmDialogBinding
-import com.example.mvvmcarrot.listener.ItemDeleteListener
+import com.example.mvvmcarrot.ui.listener.ItemDeleteListener
 import com.example.mvvmcarrot.model.Item
 
 

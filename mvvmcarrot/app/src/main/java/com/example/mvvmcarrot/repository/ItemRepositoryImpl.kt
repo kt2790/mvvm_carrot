@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.Flow
 
 
 class ItemRepositoryImpl private constructor (private val itemDao: ItemDao) : ItemRepository{
+
     override suspend fun addItem(item: Item) {
         itemDao.addItem(item)
     }
-
 
     override suspend fun updateItem(item: Item) {
         itemDao.updateItem(item)

@@ -8,7 +8,7 @@ import com.example.mvvmcarrot.data.ItemDatabase
 import com.example.mvvmcarrot.model.Item
 import com.example.mvvmcarrot.repository.ItemRepository
 import com.example.mvvmcarrot.repository.ItemRepositoryImpl
-import com.example.mvvmcarrot.viewmodel.DetailViewModel
+import com.example.mvvmcarrot.ui.viewmodel.DetailViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -49,7 +49,7 @@ class ExampleUnitTest {
 
 
     @Test
-    fun viewmodel_test() = runBlocking {
+    fun `viewmodel_test 업데이트 카운트 테스트`() = runBlocking {
 
         val itemList: MutableList<Item> = mutableListOf(
             Item(
@@ -151,6 +151,11 @@ class ExampleUnitTest {
         val viewModel = DetailViewModel(repository)
 
         val item : Flow<Item> = viewModel.readItem(5)
+
+        /*
+
+         flow {
+         */
         /*
         CoroutineScope(Dispatchers.IO).launch {
             item.collect {
@@ -166,6 +171,12 @@ class ExampleUnitTest {
         val beforeCnt : Int = beforeItem.likeCnt
 
         viewModel.updateBookmark(beforeItem)
+
+        /*
+        flow {
+         emit(item)
+         emit(item)
+         */
 
         val afterItem : Item = item.firstOrNull()!!
         val afterCnt : Int = afterItem.likeCnt

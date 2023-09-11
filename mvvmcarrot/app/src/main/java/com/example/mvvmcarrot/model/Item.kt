@@ -1,13 +1,7 @@
 package com.example.mvvmcarrot.model
 
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.coroutines.delay
-
-
-
-
 
 @Entity
 data class Item (

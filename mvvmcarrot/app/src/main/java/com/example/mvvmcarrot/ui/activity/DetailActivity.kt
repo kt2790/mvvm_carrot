@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.asLiveData
-import com.example.mvvmcarrot.R
 import com.example.mvvmcarrot.databinding.ActivityDetailBinding
 import com.example.mvvmcarrot.model.Item
 import com.example.mvvmcarrot.util.PriceConverter
-import com.example.mvvmcarrot.viewmodel.DetailViewModel
-import com.example.mvvmcarrot.viewmodel.DetailViewModelFactory
+import com.example.mvvmcarrot.ui.viewmodel.DetailViewModel
+import com.example.mvvmcarrot.ui.viewmodel.DetailViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class DetailActivity : AppCompatActivity() {
@@ -27,11 +25,12 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        detailViewModel.initState(id)
         initializeView()
     }
 
     private fun initializeView() {
-        detailViewModel.readItem(id).asLiveData().observe(this, Observer {
+        detailViewModel.item.observe(this, Observer {
             curItem = it
             binding.detailPageTitle.text = it.title
             binding.detailPageAddress.text = it.address

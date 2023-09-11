@@ -10,28 +10,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mvvmcarrot.adapter.ItemAdapter
+import com.example.mvvmcarrot.R
+import com.example.mvvmcarrot.ui.adapter.ItemAdapter
 import com.example.mvvmcarrot.databinding.ActivityMainBinding
-import com.example.mvvmcarrot.listener.ItemDeleteListener
+import com.example.mvvmcarrot.ui.listener.ItemDeleteListener
 import com.example.mvvmcarrot.model.Item
-import com.example.mvvmcarrot.viewmodel.MainViewModel
-import com.example.mvvmcarrot.viewmodel.MainViewModelFactory
+import com.example.mvvmcarrot.ui.viewmodel.MainViewModel
+import com.example.mvvmcarrot.ui.viewmodel.MainViewModelFactory
 
 
 var initial = 0
+const val SCROLL_STATE = "SCROLL_STATE"
 
 class MainActivity : AppCompatActivity(), ItemDeleteListener {
     private lateinit var binding : ActivityMainBinding
     private var scrollState = 0
 
     private val mainViewModel: MainViewModel by viewModels { MainViewModelFactory() }
-    private val adapter : ItemAdapter by lazy { ItemAdapter(this, this) }
+    private val adapter : ItemAdapter by lazy { ItemAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         savedInstanceState?.let {
-            scrollState = it.getInt("SCROLL_STATE")
+            scrollState = it.getInt(SCROLL_STATE)
         }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity(), ItemDeleteListener {
         mainViewModel.addItem(Item(
             id = 1,
             img = "sample1",
-            title = "산진 한달된 선풍기 팝니다",
+            title = "산지 한달된 선풍기 팝니다",
             content = "이사가서 필요가 없어졌어요 급하게 내놓습니다",
             seller = "대현동",
             price = "1000",
@@ -145,18 +147,6 @@ class MainActivity : AppCompatActivity(), ItemDeleteListener {
         ))
         mainViewModel.addItem(Item(
             id = 9,
-            img = "sample9",
-            title = "산진 한달된 선풍기 팝니다",
-            content = "이사가서 필요가 없어졌어요 급하게 내놓습니다",
-            seller = "대현동",
-            price = "1000",
-            address = "서울 서대문구 창천동",
-            likeCnt = 13,
-            chatCnt = 25,
-            bookmark = false
-        ))
-        mainViewModel.addItem(Item(
-            id = 10,
             img = "sample10",
             title = "셀린느 버킷 가방",
             content = "22년 신세계 대전 구매입니당\\n + \"셀린느 버킷백\\n\" + \"구매해서 몇번사용했어요\\n\" + \"까짐 스크래치 없습니다.\\n\" + \"타지역에서 보내는거라 택배로 진행합니당!\"",
@@ -170,7 +160,7 @@ class MainActivity : AppCompatActivity(), ItemDeleteListener {
     }
 
     private fun initializeView() {
-        val spinnerItem = arrayOf("내배캠동")
+        val spinnerItem = arrayOf(getString(R.string.sindang))
         val spinAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItem)
         binding.spinner.adapter = spinAdapter
         (binding.spinner.selectedView as? TextView)?.let { it.typeface = Typeface.DEFAULT_BOLD }
@@ -224,6 +214,6 @@ class MainActivity : AppCompatActivity(), ItemDeleteListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("SCROLL_STATE", scrollState)
+        outState.putInt(SCROLL_STATE, scrollState)
     }
 }
