@@ -5,6 +5,9 @@
 # 📝 Summary
 
 당근 마켓의 기본적인 기능에 해당하는 상품 리스트, 상품 상세 정보, 북마크 기능을 MVVM 패턴을 적용해서 구현하였습니다.
+![run](https://github.com/kt2790/mvvm_carrot/assets/138543028/998608a0-8dc4-4784-b535-66a62da7677a)
+
+
 
 # ⭐️ Key Function
 
